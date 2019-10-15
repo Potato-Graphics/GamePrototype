@@ -26,6 +26,24 @@ public class Controller2D : MonoBehaviour
         CalculateRaySpacing();
     }
 
+    private void Update()
+    {
+        //Flips the character when moving left and upwards.
+
+        Vector3 characterScale = transform.localScale;
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            characterScale.x = -1;
+        }
+
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            characterScale.x = 1;
+        }
+
+        transform.localScale = characterScale;
+    }
+
     public void Move(Vector3 velocity)
     {
         UpdateRaycastOrigins();
@@ -59,6 +77,13 @@ public class Controller2D : MonoBehaviour
 
             if (hit)
             {
+
+                float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+                if (i == 0)
+                {
+                    print(slopeAngle);
+                }
+
                 velocity.x = (hit.distance - skinWidth) * directionX;
                 rayLength = hit.distance;
 

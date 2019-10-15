@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     float gravity;
     float jumpVelocity;
     float velocityXSmoothing;
+    
 
     Vector3 velocity;
 
