@@ -28,7 +28,6 @@ public class Controller2D : MonoBehaviour
 
     private void Update()
     {
-        //Flips the character when moving left and upwards.
 
         Vector3 characterScale = transform.localScale;
         if (Input.GetAxis("Horizontal") < 0)
@@ -42,6 +41,7 @@ public class Controller2D : MonoBehaviour
         }
 
         transform.localScale = characterScale;
+       
     }
 
     public void Move(Vector3 velocity)

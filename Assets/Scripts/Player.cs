@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
     float gravity;
     float jumpVelocity;
     float velocityXSmoothing;
-    
+
+    public float direction;
 
     Vector3 velocity;
 
@@ -39,6 +40,17 @@ public class Player : MonoBehaviour
         }
 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //print(input);
+
+        if(input.x < 0)
+        {
+            direction = -1;
+        }
+        else if(input.x > 0)
+        {
+            direction = 1;
+        }
+        else { direction = 0; }
 
         if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
         {
