@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     float gravity;
     float jumpVelocity;
     float velocityXSmoothing;
+    public bool movingRight = false;
 
     public float direction;
 
@@ -45,10 +46,12 @@ public class Player : MonoBehaviour
         if(input.x < 0)
         {
             direction = -1;
+            movingRight = false;
         }
         else if(input.x > 0)
         {
             direction = 1;
+            movingRight = true;
         }
         else { direction = 0; }
 
@@ -58,7 +61,7 @@ public class Player : MonoBehaviour
         }
 
         float targetVelocityX = input.x * moveSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeGrounded);
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeGrounded);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
