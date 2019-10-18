@@ -47,11 +47,13 @@ public class Player : MonoBehaviour
         {
             direction = -1;
             movingRight = false;
+            Debug.Log("moving left test" + movingRight);
         }
         else if(input.x > 0)
         {
             direction = 1;
             movingRight = true;
+            Debug.Log("moving right test" + movingRight);
         }
         else { direction = 0; }
 

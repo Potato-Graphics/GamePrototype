@@ -30,11 +30,10 @@ public class Weapon : MonoBehaviour
         if (!canShoot)
             return;
 
-        Rigidbody test = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as Rigidbody;
-        int directionChange = player.movingRight ? 90 : 180;
-        Vector2 direction = (new Vector2(180, directionChange));
-        Debug.Log("the heading angle is: " + direction);
-        test.velocity = transform.TransformDirection(direction.x, direction.y, speed);
+        Rigidbody test = Instantiate<Rigidbody>(bulletPrefab, firePoint.position, firePoint.rotation);
+        Vector3 direction = transform.right * (speed * Time.deltaTime) * transform.localScale.x;
+        test.velocity = transform.TransformDirection(direction);
         HandleShootDelay();
+
     }
 }
