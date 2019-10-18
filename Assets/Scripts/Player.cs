@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public int health = 100;
     float velocityXSmoothing;
     public bool movingRight = false;
+    public bool rotation = false;
 
     public float direction;
 
@@ -77,5 +78,14 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeGrounded);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            rotation = true;
+        }
+        if(Input.GetKeyUp(KeyCode.W))
+        {
+            rotation = false;
+        }
     }
 }
