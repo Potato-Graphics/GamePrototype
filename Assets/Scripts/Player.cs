@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     float moveSpeed = 8;
     float gravity;
     float jumpVelocity;
+    public int health = 100;
     float velocityXSmoothing;
     public bool movingRight = false;
 
@@ -31,6 +32,16 @@ public class Player : MonoBehaviour
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         print("Gravity: " + gravity + " Jump Velocity: " + jumpVelocity);
+    }
+
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public void UpdateHealth(int amount)
+    {
+        health += amount;
     }
 
     void Update()
