@@ -9,14 +9,25 @@ public class Weapon : MonoBehaviour
     public Rigidbody bulletPrefab;
     public float speed = 20;
     public bool canShoot = true;
-    Player player = new Player();
-   
+    public bool delay = false;
+
+    public bool rotation = false;
+
+    public Player player;
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetAxis("Fire1") > 0.0f)
         {
-            Shoot();
+            canShoot = true;
+            Shoot(true);
+        }
+
+        if (Input.GetAxis("Fire1") <= 0.0f)
+        {
+            canShoot = false;
+            Shoot(false);
         }
     }
 
@@ -25,15 +36,32 @@ public class Weapon : MonoBehaviour
 
     }
 
-    void Shoot()
+    void Shoot(bool Shoot)
     {
-        if (!canShoot)
-            return;
+        while (!delay)
+        {
+            canShoot = Shoot;
+            if (!canShoot || delay)
+                return;
+            Rigidbody test = Instantiate<Rigidbody>(bulletPrefab, firePoint.position, firePoint.rotation);
+            Vector3 direction = player.rotation ? transform.up * (speed * Time.deltaTime) * transform.localScale.z : transform.right * (speed * Time.deltaTime) * transform.localScale.x;
+            print("transform up: " + transform.up);
+            test.velocity = transform.TransformDirection(direction);
+            HandleShootDelay();
+            ShootUpwards();
+            delay = true;
+            StartCoroutine(ShootPause());
+        }
+    }
 
-        Rigidbody test = Instantiate<Rigidbody>(bulletPrefab, firePoint.position, firePoint.rotation);
-        Vector3 direction = transform.right * (speed * Time.deltaTime) * transform.localScale.x;
-        test.velocity = transform.TransformDirection(direction);
-        HandleShootDelay();
+    void ShootUpwards()
+    {
+        rotation = !rotation;
+    }
 
+    IEnumerator ShootPause()
+    {
+        yield return new WaitForSeconds(.1f);
+        delay = false;
     }
 }
