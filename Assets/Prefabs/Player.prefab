@@ -60,8 +60,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5516824237699301658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.06, y: 1.8865517, z: 0.040039062}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -6.462, y: 1.8865517, z: 0.05}
+  m_LocalScale: {x: 0.333, y: 0.333, z: 0.333}
   m_Children:
   - {fileID: 5516824238553248950}
   m_Father: {fileID: 0}
@@ -126,6 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 3.5
   timeToJumpApex: 0.4
+  health: 100
+  rotation: 0
+  direction: 0
 --- !u!61 &5516824237699301656
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,6 +185,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 5516824237259941051}
+  bulletPrefab: {fileID: 0}
+  playerObject: {fileID: 0}
+  speed: 20
+  canShoot: 1
+  delay: 0
+  rotation: 0
+  player: {fileID: 0}
 --- !u!1 &5516824238553248951
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,8 +219,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5516824238553248951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.48, y: 0.00000011921, z: -0.031}
-  m_LocalScale: {x: 0.27500704, y: 0.23921, z: 1}
+  m_LocalPosition: {x: 0.13, y: -0.097, z: -0.017}
+  m_LocalScale: {x: 0.075007, y: 0.03921, z: 1}
   m_Children:
   - {fileID: 5516824237259941051}
   m_Father: {fileID: 5516824237699301652}
