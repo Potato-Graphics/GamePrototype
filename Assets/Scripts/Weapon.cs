@@ -31,11 +31,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void HandleShootDelay()
-    {
-
-    }
-
     void Shoot(bool Shoot)
     {
         while (!delay)
@@ -47,7 +42,6 @@ public class Weapon : MonoBehaviour
             Vector3 direction = player.rotation ? transform.up * (speed * Time.deltaTime) * transform.localScale.z : transform.right * (speed * Time.deltaTime) * transform.localScale.x;
             print("transform up: " + transform.up);
             test.velocity = transform.TransformDirection(direction);
-            HandleShootDelay();
             ShootUpwards();
             delay = true;
             StartCoroutine(ShootPause());

@@ -41,7 +41,7 @@ public class Controller2D : MonoBehaviour
         }
 
         transform.localScale = characterScale;
-       
+
     }
 
     public void Move(Vector3 velocity)

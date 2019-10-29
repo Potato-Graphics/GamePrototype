@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
         }
 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        //print(input);
 
         if(input.x < 0)
         {
@@ -68,6 +67,7 @@ public class Player : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
+        //Gets key input for shooting upwards.
         if (Input.GetKeyDown(KeyCode.W))
         {
             rotation = true;
@@ -76,5 +76,6 @@ public class Player : MonoBehaviour
         {
             rotation = false;
         }
+
     }
 }
