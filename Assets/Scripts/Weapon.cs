@@ -6,7 +6,8 @@ public class Weapon : MonoBehaviour
 {
 
     public Transform firePoint;
-    public Rigidbody bulletPrefab;
+    public Rigidbody2D bulletPrefab;
+    public GameObject playerObject;
     public float speed = 20;
     public bool canShoot = true;
     public bool delay = false;
@@ -20,13 +21,11 @@ public class Weapon : MonoBehaviour
     {
         if (Input.GetAxis("Fire1") > 0.0f)
         {
-            canShoot = true;
             Shoot(true);
         }
 
         if (Input.GetAxis("Fire1") <= 0.0f)
         {
-            canShoot = false;
             Shoot(false);
         }
     }
@@ -38,9 +37,8 @@ public class Weapon : MonoBehaviour
             canShoot = Shoot;
             if (!canShoot || delay)
                 return;
-            Rigidbody test = Instantiate<Rigidbody>(bulletPrefab, firePoint.position, firePoint.rotation);
+            Rigidbody2D test = Instantiate<Rigidbody2D>(bulletPrefab, firePoint.position, firePoint.rotation);
             Vector3 direction = player.rotation ? transform.up * (speed * Time.deltaTime) * transform.localScale.z : transform.right * (speed * Time.deltaTime) * transform.localScale.x;
-            print("transform up: " + transform.up);
             test.velocity = transform.TransformDirection(direction);
             ShootUpwards();
             delay = true;

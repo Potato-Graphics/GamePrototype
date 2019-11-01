@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Destroy_onCollision : MonoBehaviour
 {
-    
-    private void OnCollisionEnter( Collision col )
-    {
-        //TODO: Handle damage
-        Destroy(gameObject);
-    }
 
+    /* Handles the bullet collision
+     */
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag != "Player" || col.gameObject.tag.Contains("Bullet"))
+        {
+            //if the bullet collides with an enemy deal damage to said enemy
+            if (col.gameObject.tag == "Enemy")
+                col.gameObject.GetComponent<Enemy>().UpdateHealth(-5);
+            //destroy the bullet.
+            Destroy(gameObject);
+        }
+    }
 }
