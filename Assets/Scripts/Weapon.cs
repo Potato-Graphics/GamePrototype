@@ -30,11 +30,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void HandleShootDelay()
-    {
-
-    }
-
     void Shoot(bool Shoot)
     {
         while (!delay)
@@ -45,7 +40,6 @@ public class Weapon : MonoBehaviour
             Rigidbody2D test = Instantiate<Rigidbody2D>(bulletPrefab, firePoint.position, firePoint.rotation);
             Vector3 direction = player.rotation ? transform.up * (speed * Time.deltaTime) * transform.localScale.z : transform.right * (speed * Time.deltaTime) * transform.localScale.x;
             test.velocity = transform.TransformDirection(direction);
-            HandleShootDelay();
             ShootUpwards();
             delay = true;
             StartCoroutine(ShootPause());
