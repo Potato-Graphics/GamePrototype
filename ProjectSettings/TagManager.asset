@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - ScoreTier1
+  - ScoreTier2
+  - ScoreTier3
+  - ScoreTier4
+  - ScoreTier5
   layers:
   - Default
   - TransparentFX
@@ -16,8 +22,8 @@ TagManager:
   - PostProcessing
   - Player
   - Obstacles
-  - 
-  - 
+  - Enemy
+  - Background
   - 
   - 
   - 
@@ -38,6 +44,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2110337739
+    locked: 0
+  - name: Hills
+    uniqueID: 1472813469
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
