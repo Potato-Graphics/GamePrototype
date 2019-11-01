@@ -5,33 +5,23 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private int distanceToCharge = 6; // distanced required for the enemy to charge
-    [SerializeField]
-    private const int MAX_HEALTH = 25;
+    [SerializeField] private int distanceToCharge = 6; // distanced required for the enemy to charge
+    [SerializeField] private const int MAX_HEALTH = 25;
     private int currentHealth; // enemys current health
-    [SerializeField]
-    private float walkSpeed = 10.0f; // charge speed
-    [SerializeField]
-    private float chargeSpeed = 50.0f;
-    [SerializeField]
-    private Transform playerObject; // the player transform object
-    [SerializeField]
-    private Vector3 playerPosition; // players position
+    [SerializeField] private float walkSpeed = 10.0f; // charge speed
+    [SerializeField] private float chargeSpeed = 50.0f;
+    [SerializeField] private Transform playerObject; // the player transform object
+    [SerializeField] private Vector3 playerPosition; // players position
     private Vector3 startPosition;
-    [SerializeField]
-    private float distance; // distance between enemy and player
-    [SerializeField]
-    private Vector3 enemyPosition; // enemy position
-    [SerializeField]
-    private State currentState; // enemys current state
-    [SerializeField]
-    private Player player; // the player object
-    [SerializeField]
-    private float idleWalkDistance = 5.0f;
-    [SerializeField]
-    private EnemyType enemyType; //the enemy type
+    [SerializeField] private float distance; // distance between enemy and player
+    [SerializeField] private Vector3 enemyPosition; // enemy position
+    [SerializeField] private State currentState; // enemys current state
+    [SerializeField] private Player player; // the player object
+    [SerializeField] private float idleWalkDistance = 5.0f;
+    [SerializeField] private EnemyType enemyType; //the enemy type
     [SerializeField] private bool movingRight = true;
+    [SerializeField] public bool collidingWithPlayer = false;
+    [SerializeField] public bool damagePlayer = true;
     Rigidbody2D rb;
     private float timePassed;
     private Vector3 localScale;
@@ -62,6 +52,15 @@ public class Enemy : MonoBehaviour
         distance = Vector3.Distance(playerPosition, enemyPosition);
         timePassed += Time.deltaTime;
 
+        if(GetState() == State.Charging)
+        {
+            if (damagePlayer)
+            {
+                player.DealDamage(1);
+                SetState(Enemy.State.CoolDown);
+                damagePlayer = false;
+            }
+        }
         if(GetState() == State.Charging)
             if(timePassed > 5)
                 SetState(State.Idle);
@@ -97,15 +96,21 @@ public class Enemy : MonoBehaviour
                 return;
             if (GetState() == State.Idle)
             {
-                //If the player is idle and in range the enemy starts to attack.
-                SetState(State.Attacking);
+                if (movingRight && enemyPosition.x - 5 < playerPosition.x - 5)
+                    SetState(State.Attacking);
+                else if (!movingRight && enemyPosition.x + 5 > playerPosition.x + 5)
+                    SetState(State.Attacking);
             }
         }
         else if (distance >= distanceToCharge)
-        {
             //if the player is out of range the enemy is set to idle.
             SetState(State.Idle);
-        }
+
+        if (movingRight && playerPosition.x < enemyPosition.x)
+            SetState(State.Idle);
+        else if (!movingRight && playerPosition.x > enemyPosition.x)
+            SetState(State.Idle);
+
         if (currentHealth <= 0)
             //if the enemy has no remaining health the enemy is set to dead.
             SetState(State.Dead);

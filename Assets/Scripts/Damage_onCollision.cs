@@ -15,13 +15,23 @@ public class Damage_onCollision : MonoBehaviour
         //if the collider is a player
         if (collision.gameObject.tag == "Player")
         {
+            if (enemy.GetState() != Enemy.State.Attacking)
+                return;
+            enemy.collidingWithPlayer = true;
             //if the enemy isn't on cooldown
             if (enemy.GetState() != Enemy.State.CoolDown)
             {
                 //the enemy damages the player and goes into cool down.
-                player.UpdateHealth(-5);
-                enemy.SetState(Enemy.State.CoolDown);
+                enemy.damagePlayer = true;
             }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            enemy.collidingWithPlayer = false;
         }
     }
 }

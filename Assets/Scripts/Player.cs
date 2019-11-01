@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     float jumpVelocity;
     [SerializeField]
     private const int MAX_HEALTH = 3;
+    [SerializeField] private int score = 0;
     public int currentHealth;
     float velocityXSmoothing;
     public bool rotation = false;
@@ -47,6 +48,16 @@ public class Player : MonoBehaviour
     {
         currentHealth += amount;
 
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void UpdateScore(int amount)
+    {
+        score += amount;
     }
 
     public void DealDamage(int amount)

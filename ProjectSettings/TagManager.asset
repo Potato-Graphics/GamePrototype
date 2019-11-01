@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - ScoreTier1
+  - ScoreTier2
+  - ScoreTier3
+  - ScoreTier4
+  - ScoreTier5
   layers:
   - Default
   - TransparentFX
