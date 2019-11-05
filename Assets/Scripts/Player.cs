@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
         {
             velocity.y = jumpVelocity;
+            print("jump");
         }
 
         float targetVelocityX = input.x * moveSpeed;
