@@ -1211,8 +1211,9 @@ GameObject:
   - component: {fileID: 739660477}
   - component: {fileID: 739660476}
   - component: {fileID: 739660475}
+  - component: {fileID: 739660478}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1226,8 +1227,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739660473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.95, y: 1.55, z: -7.903}
-  m_LocalScale: {x: 2.6102579, y: 1.0145549, z: 1}
+  m_LocalPosition: {x: -12.33, y: 1.55, z: -7.903}
+  m_LocalScale: {x: 2.682448, y: 1.5585592, z: 1.5362}
   m_Children: []
   m_Father: {fileID: 902142774}
   m_RootOrder: 1
@@ -1291,6 +1292,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739660473}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &739660478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739660473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9f1120025372e4185f1b02b64fd65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1.5
+  playerRange: 20
 --- !u!114 &740239864 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5516824237699301655, guid: 98367629276291a448f977ddd0f314f0,
@@ -1737,6 +1752,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b469aef05e839264f8c95521d09e904c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
